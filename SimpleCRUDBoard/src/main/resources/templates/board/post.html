@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <title th:text="${post.title}">Document</title>
+</head>
+<body>
+    <div class="container py-5">
+        <header class="row">
+            <h2 class="col-md-4 text-left" th:text="${post.title}">Title</h2>
+            <p class="col-md-8 text-center" style="margin-top: 1em;" th:text="|view: ${post.view}|">view</p>
+        </header>
+        <h3 th:if="${param.addStatus}">저장 완료</h3>
+        <h3 th:if="${param.editStatus}">수정 완료</h3>
+        <hr>
+        <main >
+            <textarea name="" id="" cols="30" rows="15" class="form-control" th:text="${post.text}" disabled>본문</textarea>
+        </main>
+        <footer class="row" style="margin-top: 1em;">
+            <div class="col-md-offset-9">
+                <button type="button" class="btn btn-danger" onclick="location.href='delete'" th:onclick="|location.href='@{/board/posts/{postId}/delete(postId=${post.id})}'|">삭제</button>
+                <button type="button" class="btn btn-default" onclick="location.href='posts'" th:onclick="|location.href='@{/board/posts}'|">목록으로</button>
+                <button type="button" class="btn btn-default" onclick="location.href='postEdit'" th:onclick="|location.href='@{/board/posts/{postId}/edit(postId=${post.id})}'|">수정하기</button>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
